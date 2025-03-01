@@ -79,7 +79,7 @@ def detect_particle_events(images, mean_image, hot_pixel_thresh=0.01, duration_t
 def compute_particle_flux(event_map, pixel_size_um, sensor_width_px, sensor_height_px, exposure_time_ms, num_frames, binning_factor=1):
     """Computes cosmic particle flux per pixel and in real-world dimensions (if dimensions provided)."""
     total_particle_events = np.sum(event_map)
-    exposure_time_s = (exposure_time_ms * num_frames) / 86400000  # * 1000 Convert ms to seconds -> changed to 86400000 per day
+    exposure_time_s = (exposure_time_ms * num_frames) / 86400000 # * 1000 Convert ms to seconds -> changed to 86400000 per day
 
     # Adjust sensor dimensions based on binning factor
     sensor_width_px //= binning_factor
