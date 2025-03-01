@@ -52,7 +52,7 @@ The script outputs:
 - Streaks (tracks across multiple pixels)  
 - Cosmic event flux per pixel per second  
 - If sensor dimensions are provided, flux per mm² per second
-  ![Screenshot 2025-03-01 at 07 44 20](https://github.com/user-attachments/assets/9c9e3a25-bb6c-4b89-89d7-83ddd41cc45a)
+![Screenshot 2025-03-01 at 08 15 27](https://github.com/user-attachments/assets/68a472d7-f38e-43bd-b037-3f39d37570dc)
 
 
 A **CSV file** (`cosmometer_events.csv`) logs:  
