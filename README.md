@@ -85,11 +85,6 @@ Graphical outputs include:
      ![Screenshot 2025-03-01 at 07 47 21](https://github.com/user-attachments/assets/52168d34-43b6-4496-a716-09e7fe488843)
 
 
-
-## Example Output
-
-
-
 ## Contribute
 - **Fork the repo & submit pull requests** to improve detection algorithms.
 - **Citizen Science: test in different environments** (mountains, airplanes, underground labs) and share data. Use     Discussions to share your data.
