@@ -43,9 +43,6 @@ Cosmo-Meter processes a sequence of dark frames (images taken in complete darkne
 3. Save them in a folder (e.g., `dark_frames/`).
 
 ### Run Cosmo-Meter
-```bash
-python cosmometer.py --image_folder path/to/dark_frames --output cosmo-meter_events.csv
-```
 ![Screenshot 2025-03-01 at 07 43 42](https://github.com/user-attachments/assets/fdcc0b1a-17d7-4db5-9d60-0a23f788a94d)
 
 
