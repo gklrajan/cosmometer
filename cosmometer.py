@@ -33,14 +33,14 @@ def compute_mean_image(images):
     return mean_image
 
 
-def detect_particle_events(images, mean_image, hot_pixel_thresh=0.005, duration_thresh=10, streak_connectivity=3):
+def detect_particle_events(images, mean_image, hot_pixel_thresh=0.01, duration_thresh=2, streak_connectivity=3):
     """Detects cosmic events, hot pixels, and streaks based on a pixel-wise adaptive threshold."""
     num_frames, height, width = images.shape
     event_map = np.zeros((height, width), dtype=np.uint32)
     hot_pixel_map = np.zeros((height, width), dtype=np.uint32)
     streak_map = np.zeros((num_frames, height, width), dtype=np.uint32)  # Stores streaks across time
 
-    threshold_matrix = 5 * mean_image  # Pixel-wise threshold
+    threshold_matrix = mean_image + 3 * np.std(images, axis=0)
 
     event_list = []
     activation_count = np.zeros((height, width), dtype=np.uint32)
