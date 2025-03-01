@@ -65,7 +65,7 @@ def detect_particle_events(images, mean_image, hot_pixel_thresh=0.01, duration_t
             if np.sum(events[max(0, y-1):y+2, max(0, x-1):x+2]) >= streak_connectivity:
                 streak_map[i, y, x] = 1
 
-    # Hot pixel filtering: Remove pixels active in >0.5% of total frames
+    # Hot pixel filtering: Remove pixels active in >1% of total frames
     hot_pixels = activation_count > (hot_pixel_thresh * num_frames)
     event_map[hot_pixels] = 0
 
