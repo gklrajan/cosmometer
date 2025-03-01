@@ -26,7 +26,7 @@ Cosmo-Meter processes a sequence of dark frames (images taken in complete darkne
 3. Detects plausible cosmic events and streaks (possible cosmic ray tracks across multiple pixels).
 4. Filters out hot pixels and other electronic noise (sensor defects that remain bright across many frames or >0.5% of total frames).
 5. Logs detected cosmic events with their coordinates and timestamps.
-6. There are at least 3 hardcoded parameters - the rationale for them is as follows: a) remove the pixels passing the thresh in (2) over 1% of the total frames - this frequency is too high to be a cosmic event and will also eliminate a large chunck of noise including (but not limited to) hot pixel. b) threshold to sisolate a streak is set to at least 3 connected pixels. well, is anything less than 3 even a streak? c) if the bright spot of interest lasts for >1 frame, it's eliminated. In the exposure time of imaging that people will use this for, the paricles of interest would have already travelled 100s or 1000s of kilometers.
+6. There are at least 3 hardcoded parameters - the rationale for them is as follows: a) remove the pixels passing the thresh in (2) over 1% of the total frames - this frequency is too high to be a cosmic event and will also eliminate a large chunck of noise including (but not limited to) hot pixel. b) threshold to isolate a streak is set to at least 3 connected pixels. well, is anything less than 3 even a streak? c) if the bright spot of interest lasts for >1 frame, it's eliminated. In the exposure time of imaging that people will use this for, the paricles of interest would have already travelled 100s or 1000s of kilometers.
 
 ## Installation
 ### Requirements:
