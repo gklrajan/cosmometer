@@ -46,18 +46,32 @@ python cosmometer.py --image_folder path/to/dark_frames --output cosmo-meter_eve
 
 
 ### Interpretation of Results
-- The script outputs:
-  - **Total detected cosmic particle events**
-  - **Streaks (tracks across multiple pixels)**
-  - **Muon flux per pixel per second**
-  - **If sensor dimensions are provided, flux per mm² per second**
-  
-- A CSV file (`cosmo-meter_events.csv`) logs:
-  - **Frame Number, X Coordinate, Y Coordinate** of each detected cosmic event.
-  
-- Graphical outputs include:
-  - **Event heatmaps** (hot pixels, streaks, total cosmic events overlaid on sensor data)
-  - **Scatter plot of detected cosmic events across frames**
+The script outputs:  
+- Total detected cosmic particle events  
+- Streaks (tracks across multiple pixels)  
+- Cosmic event flux per pixel per second  
+- If sensor dimensions are provided, flux per mm² per second  
+
+A **CSV file** (`cosmometer_events.csv`) logs:  
+- Frame Number  
+- X Coordinate  
+- Y Coordinate  
+For each detected cosmic event.  
+
+Graphical outputs include:  
+
+1. **Event heatmaps**  
+   - Hot pixels (persistent bright pixels that could be artifacts)  
+   - Streaks (tracks from high-energy cosmic rays)  
+   - Total detected cosmic events overlaid on the sensor data  
+
+2. **Scatter plot of detected cosmic events over time**  
+   - X, Y position of events  
+   - Frame number as colorbar (shows when they occurred over time)  
+
+3. **Streak map visualization**  
+   - Time (frame number) on X-axis  
+   - Y-axis as streak coordinate (tracks cosmic rays over time) 
 
 ## Example Output
 
