@@ -1,7 +1,7 @@
 # Cosmo-Meter: Cosmic Event Detector
 
 ## Overview
-**Cosmo-Meter** is an open-source cosmic event detection tool that uses digital camera sensors (CMOS or CCD) to detect **muons, cosmic rays, and other high-energy particle interactions**. By analyzing a time series of dark frames, it identifies transient bright pixel events that are likely caused by charged particles passing through the sensor. Use at least a 1000 dark images. The more, the better.
+**Cosmo-Meter** is an open-source cosmic event detection tool that uses digital camera sensors (CMOS or CCD) to detect **muons, cosmic rays, and other high-energy particle interactions**. By analyzing a time series of dark frames, it identifies transient bright pixel events that are likely caused by charged particles passing through the sensor. Use at least a 10K dark images - images captured in absolute darkness with shutter closed. The more images, the better.
 
 ## What Can It Detect?
 - **Most Likely Detections:**
@@ -21,9 +21,9 @@
 ## How It Works
 Cosmo-Meter processes a sequence of dark frames (images taken in complete darkness) and:
 1. **Identifies transient bright pixels** that appear in a single frame but disappear in subsequent frames.
-2. It does it by **dynamic thresholding** based on the per-pixel statistics of your uploaded images. 
+2. It does it by **dynamic thresholding** based on the per-pixel statistics (mean and std) of your uploaded images. So, it should automatically adapt to dark images from any camera.
 3. **Detects streaks** (possible cosmic ray tracks across multiple pixels).
-4. **Filters out hot pixels** (sensor defects that remain bright across many/ 0.5% frames).
+4. **Filters out hot pixels and other electronic noise** (sensor defects that remain bright across many frames or >0.5% of total frames).
 5. **Logs detected cosmic events** with their coordinates and timestamps.
 
 ## Installation
