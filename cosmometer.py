@@ -117,7 +117,7 @@ def compute_threshold_matrix(images, sample_fraction=0.05):
     mean_image = np.mean(sampled_images, axis=0)
     std_image = np.std(sampled_images, axis=0)
     
-    threshold_matrix = mean_image + 100 * std_image  # Adaptive threshold
+    threshold_matrix = mean_image + 100 * std_image  # Adaptive threshold - a multiplier of 100 is likely an overkill but keeps false positives in check
     return threshold_matrix
 
 
