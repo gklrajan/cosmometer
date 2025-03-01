@@ -50,8 +50,8 @@ python cosmometer.py --image_folder path/to/dark_frames --output cosmo-meter_eve
 The script outputs:  
 - Total detected cosmic particle events  
 - Streaks (tracks across multiple pixels)  
-- Cosmic event flux per pixel per second  
-- If sensor dimensions are provided, flux per mm² per second
+- Cosmic event flux per pixel per second -> updtaed to per day
+- If sensor dimensions are provided, flux per mm² per second -> updated to per day
 ![Screenshot 2025-03-01 at 08 15 27](https://github.com/user-attachments/assets/68a472d7-f38e-43bd-b037-3f39d37570dc)
 
 
