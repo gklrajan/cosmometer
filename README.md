@@ -61,6 +61,7 @@ A **CSV file** (`cosmometer_events.csv`) logs:
 - X Coordinate  
 - Y Coordinate  
 For each detected cosmic event.
+
 ![Screenshot 2025-03-01 at 07 48 06](https://github.com/user-attachments/assets/926e4b79-8fff-495e-98a3-4f54bebac4dc)
 
 
