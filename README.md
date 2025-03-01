@@ -1,30 +1,31 @@
 # Cosmo-Meter: Cosmic Event Detector
 
 ## Overview
-**Cosmo-Meter** is an open-source cosmic event detection tool that uses digital camera sensors (CMOS or CCD) to detect **muons, cosmic rays, and other high-energy particle interactions**. By analyzing a time series of dark frames, it identifies transient bright pixel events that are likely caused by charged particles passing through the sensor. Use at least a 10K dark images - images captured in absolute darkness with shutter closed. The more images, the better.
+**Cosmo-Meter** is an open-source cosmic event detection tool that uses digital camera sensors (CMOS or CCD) to detect muons, cosmic rays, and other high-energy particle interactions. By analyzing a time series of dark frames, it identifies transient bright pixel events that are _likely_ caused by charged particles passing through the sensor. Use at least a 10K dark images - images captured in absolute darkness with shutter closed. The more images, the better.
+^p.s. likely is the keyword. be skeptical.
 
 ## What Can It Detect?
-- **Most Likely Detections:**
-  - **Muons** (from cosmic ray showers)
-  - **High-energy protons and electrons**
-  - **Secondary cosmic rays from air showers**
-
-- **Possible Detections:**
-  - **Radioactive decay events (beta particles, X-rays) in specific environments**
-  - **High-energy gamma-ray interactions producing electron-positron pairs**
-  - **Neutron-induced ionization (rare, but possible)**
+- Most Likely Detections:
+  - Muons (from cosmic ray showers)
+  - High-energy protons and electrons
+  - Secondary cosmic rays from air showers
+    
+- Possible Detections:
+  - Radioactive decay events (beta particles, X-rays) in specific environments
+  - High-energy gamma-ray interactions producing electron-positron pairs
+  - Neutron-induced ionization (rare, but possible)
 
 - **What It Cannot Detect:**
-  - **Neutrinos**
-  - **Dark matter or exotic physics (unless they interact in an unknown way)**
+  - Neutrinos
+  - Dark matter or exotic physics (unless they interact in an unknown way)
 
 ## How It Works
 Cosmo-Meter processes a sequence of dark frames (images taken in complete darkness) and:
-1. **Identifies transient bright pixels** that appear in a single frame but disappear in subsequent frames.
-2. It does it by **dynamic thresholding** based on the per-pixel statistics (mean and std) of your uploaded images. So, it should automatically adapt to dark images from any camera.
-3. **Detects streaks** (possible cosmic ray tracks across multiple pixels).
-4. **Filters out hot pixels and other electronic noise** (sensor defects that remain bright across many frames or >0.5% of total frames).
-5. **Logs detected cosmic events** with their coordinates and timestamps.
+1. Identifies transient bright pixels that appear in a single frame but disappear in subsequent frames.
+2. It does it by dynamic thresholding based on the per-pixel statistics (mean and std) of your uploaded images. So, it should automatically adapt to dark images from any camera.
+3. Detects streaks (possible cosmic ray tracks across multiple pixels).
+4. Filters out hot pixels and other electronic noise (sensor defects that remain bright across many frames or >0.5% of total frames).
+5. Logs detected cosmic events with their coordinates and timestamps.
 
 ## Installation
 ### Requirements:
@@ -37,7 +38,7 @@ Cosmo-Meter processes a sequence of dark frames (images taken in complete darkne
 ## Usage
 ### Capture Dark Frames
 1. Use a digital camera (CMOS/CCD) with the lens covered.
-2. Capture a series of **dark frames** at a fixed exposure time (e.g., 30ms to 1s).
+2. Capture a series of dark frames at a fixed exposure time (e.g., 30ms to 1s).
 3. Save them in a folder (e.g., `dark_frames/`).
 
 ### Run Cosmo-Meter
@@ -87,15 +88,15 @@ Graphical outputs include:
 
 
 ## Contribute
-- **Fork the repo & submit pull requests** to improve detection algorithms.
-- **Citizen Science: test in different environments** (mountains, airplanes, underground labs) and share data. Use     Discussions to share your data.
-- **Extend detection for specific particle types** (e.g., neutron sensitivity, radiation source analysis).
+- Fork the repo & submit pull requests to improve detection algorithms.
+- Citizen Science: test in different environments (mountains, airplanes, underground labs) and share data. Use     Discussions to share your data.
+- Extend detection for specific particle types (e.g., neutron sensitivity, radiation source analysis).
 
 ## License
-Cosmos-Meter is released under the **MIT License**, making it open for anyone to use, modify, and improve.
+Cosmos-Meter is released under the MIT License, making it open for anyone to use, modify, and improve.
 
 ## Credits
-Developed by **Gokul Rajan** as an open-source cosmic event detection tool.
+Developed by Gokul Rajan as an open-source cosmic event detection tool.
 
 ---
-**The universe is always watching. Now, you can watch it back.** :D
+The universe is always watching. Now, you can watch it back. :D
