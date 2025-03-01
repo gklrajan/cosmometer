@@ -33,14 +33,12 @@ def compute_mean_image(images):
     return mean_image
 
 
-def detect_particle_events(images, mean_image, hot_pixel_thresh=0.01, duration_thresh=2, streak_connectivity=3):
+def detect_particle_events(images, threshold_matrix, hot_pixel_thresh=0.01, duration_thresh=1, streak_connectivity=3):
     """Detects cosmic events, hot pixels, and streaks based on a pixel-wise adaptive threshold."""
     num_frames, height, width = images.shape
     event_map = np.zeros((height, width), dtype=np.uint32)
     hot_pixel_map = np.zeros((height, width), dtype=np.uint32)
     streak_map = np.zeros((num_frames, height, width), dtype=np.uint32)  # Stores streaks across time
-
-    threshold_matrix = mean_image + 3 * np.std(images, axis=0)
 
     event_list = []
     activation_count = np.zeros((height, width), dtype=np.uint32)
@@ -106,6 +104,21 @@ def save_events_to_csv(event_list, output_csv):
         writer.writerow(["Frame", "X Coordinate", "Y Coordinate"])
         writer.writerows(event_list)
     print(f"Particle event data saved to {output_csv}")
+    
+
+def compute_threshold_matrix(images, sample_fraction=0.01):
+    """Computes the mean and standard deviation using a small fraction of frames to save memory."""
+    num_frames = images.shape[0]
+    sample_size = max(5, int(num_frames * sample_fraction))  # At least 5 frames
+    
+    sampled_indices = np.random.choice(num_frames, sample_size, replace=False)  # Randomly pick frames
+    sampled_images = images[sampled_indices]  # Subset of frames
+    
+    mean_image = np.mean(sampled_images, axis=0)
+    std_image = np.std(sampled_images, axis=0)
+    
+    threshold_matrix = mean_image + 3 * std_image  # Adaptive threshold
+    return threshold_matrix
 
 
 def plot_results(event_map, hot_pixels, streak_map, event_list):
@@ -147,10 +160,10 @@ def main(image_folder, output_csv, pixel_size_um=None, sensor_width_px=None, sen
     """Cosmometer: Detecting cosmic rays, muons, and high-energy particle interactions in digital camera sensors."""
     images, image_files = load_images(image_folder)
     print(f"Loaded {len(images)} images from {image_folder}")
-
-    mean_image = compute_mean_image(images)
-    event_map, hot_pixels, streak_map, event_list = detect_particle_events(images, mean_image)
-
+    
+    threshold_matrix = compute_threshold_matrix(images, sample_fraction=0.01)
+    event_map, hot_pixels, streak_map, event_list = detect_particle_events(images, threshold_matrix)
+    
     total_particle_events = np.sum(event_map)
     total_streaks = np.sum(streak_map)
 
