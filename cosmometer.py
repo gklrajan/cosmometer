@@ -76,6 +76,29 @@ def detect_particle_events(images, mean_image, hot_pixel_thresh=0.005, duration_
     return event_map, hot_pixels, streak_map, event_list
 
 
+def compute_particle_flux(event_map, pixel_size_um, sensor_width_px, sensor_height_px, exposure_time_ms, num_frames, binning_factor=1):
+    """Computes cosmic particle flux per pixel and in real-world dimensions (if dimensions provided)."""
+    total_particle_events = np.sum(event_map)
+    exposure_time_s = (exposure_time_ms * num_frames) / 1000  # Convert ms to seconds
+
+    # Adjust sensor dimensions based on binning factor
+    sensor_width_px //= binning_factor
+    sensor_height_px //= binning_factor
+    pixel_size_um *= binning_factor  # Effective pixel size increases
+
+    # Particle flux per pixel per second
+    particle_flux_per_pixel = total_particle_events / (sensor_width_px * sensor_height_px * exposure_time_s)
+
+    # Compute real-world particle flux (if dimensions are provided)
+    if pixel_size_um and sensor_width_px and sensor_height_px:
+        sensor_area_mm2 = (pixel_size_um * sensor_width_px * pixel_size_um * sensor_height_px) / 1e6  # Convert um² to mm²
+        particle_flux_real_world = total_particle_events / (sensor_area_mm2 * exposure_time_s)  # Events per mm² per second
+    else:
+        particle_flux_real_world = None  # Not computed if dimensions are unknown
+
+    return particle_flux_per_pixel, particle_flux_real_world
+
+
 def save_events_to_csv(event_list, output_csv):
     """Saves detected cosmic particle events to a CSV file."""
     with open(output_csv, mode='w', newline='') as file:
@@ -121,7 +144,7 @@ def plot_results(event_map, hot_pixels, streak_map, event_list):
 
 
 def main(image_folder, output_csv, pixel_size_um=None, sensor_width_px=None, sensor_height_px=None, exposure_time_ms=1, binning_factor=1):
-    """Cosmo-Meter: Detecting cosmic rays, muons, and high-energy particle interactions in digital camera sensors."""
+    """Cosmometer: Detecting cosmic rays, muons, and high-energy particle interactions in digital camera sensors."""
     images, image_files = load_images(image_folder)
     print(f"Loaded {len(images)} images from {image_folder}")
 
@@ -131,8 +154,18 @@ def main(image_folder, output_csv, pixel_size_um=None, sensor_width_px=None, sen
     total_particle_events = np.sum(event_map)
     total_streaks = np.sum(streak_map)
 
+    particle_flux_per_pixel, particle_flux_real_world = compute_particle_flux(
+        event_map, pixel_size_um, sensor_width_px, sensor_height_px, exposure_time_ms, len(images), binning_factor
+    )
+
     print(f"Total detected cosmic particle events: {total_particle_events}")
     print(f"Total detected streaks: {total_streaks}")
+    print(f"Particle flux per pixel per second: {particle_flux_per_pixel:.6f}")
+
+    if particle_flux_real_world is not None:
+        print(f"Particle flux per mm² per second: {particle_flux_real_world:.6f}")
+    else:
+        print("Real-world cosmic flux not computed (sensor dimensions not provided)")
 
     save_events_to_csv(event_list, output_csv)
     plot_results(event_map, hot_pixels, streak_map, event_list)
@@ -142,10 +175,10 @@ def main(image_folder, output_csv, pixel_size_um=None, sensor_width_px=None, sen
 if __name__ == "__main__":
     main(
         image_folder="D:/Gokul/2024-Widefield/dark_img_allCovered_",
-        output_csv="cosmo-meter_events.csv",
-        pixel_size_um=6.5,
-        sensor_width_px=2048,
+        output_csv="cosmometer_events.csv",
+        pixel_size_um=6.5,#um
+        sensor_width_px=2048,#px
         sensor_height_px=1024,
-        exposure_time_ms=30,
+        exposure_time_ms=30, #ms
         binning_factor=1
     )
