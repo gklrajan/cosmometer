@@ -106,10 +106,10 @@ def save_events_to_csv(event_list, output_csv):
     print(f"Particle event data saved to {output_csv}")
     
 
-def compute_threshold_matrix(images, sample_fraction=0.01):
+def compute_threshold_matrix(images, sample_fraction=0.05):
     """Computes the mean and standard deviation using a small fraction of frames to save memory."""
     num_frames = images.shape[0]
-    sample_size = max(5, int(num_frames * sample_fraction))  # At least 5 frames
+    sample_size = max(100, int(num_frames * sample_fraction))  # At least 100 frames
     
     sampled_indices = np.random.choice(num_frames, sample_size, replace=False)  # Randomly pick frames
     sampled_images = images[sampled_indices]  # Subset of frames
@@ -117,7 +117,7 @@ def compute_threshold_matrix(images, sample_fraction=0.01):
     mean_image = np.mean(sampled_images, axis=0)
     std_image = np.std(sampled_images, axis=0)
     
-    threshold_matrix = mean_image + 3 * std_image  # Adaptive threshold
+    threshold_matrix = mean_image + 100 * std_image  # Adaptive threshold
     return threshold_matrix
 
 
@@ -161,7 +161,7 @@ def main(image_folder, output_csv, pixel_size_um=None, sensor_width_px=None, sen
     images, image_files = load_images(image_folder)
     print(f"Loaded {len(images)} images from {image_folder}")
     
-    threshold_matrix = compute_threshold_matrix(images, sample_fraction=0.01)
+    threshold_matrix = compute_threshold_matrix(images, sample_fraction=0.05)
     event_map, hot_pixels, streak_map, event_list = detect_particle_events(images, threshold_matrix)
     
     total_particle_events = np.sum(event_map)
