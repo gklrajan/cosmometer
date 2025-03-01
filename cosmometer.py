@@ -79,7 +79,7 @@ def detect_particle_events(images, mean_image, hot_pixel_thresh=0.005, duration_
 def compute_particle_flux(event_map, pixel_size_um, sensor_width_px, sensor_height_px, exposure_time_ms, num_frames, binning_factor=1):
     """Computes cosmic particle flux per pixel and in real-world dimensions (if dimensions provided)."""
     total_particle_events = np.sum(event_map)
-    exposure_time_s = (exposure_time_ms * num_frames) / 1000  # Convert ms to seconds
+    exposure_time_s = (exposure_time_ms * num_frames) / 86400000  # * 1000 Convert ms to seconds -> changed to 86400000 per day
 
     # Adjust sensor dimensions based on binning factor
     sensor_width_px //= binning_factor
@@ -160,10 +160,10 @@ def main(image_folder, output_csv, pixel_size_um=None, sensor_width_px=None, sen
 
     print(f"Total detected cosmic particle events: {total_particle_events}")
     print(f"Total detected streaks: {total_streaks}")
-    print(f"Particle flux per pixel per second: {particle_flux_per_pixel:.6f}")
+    print(f"Particle flux per pixel per day: {particle_flux_per_pixel:.6f}")
 
     if particle_flux_real_world is not None:
-        print(f"Particle flux per mm² per second: {particle_flux_real_world:.6f}")
+        print(f"Particle flux per mm² per day: {particle_flux_real_world:.6f}")
     else:
         print("Real-world cosmic flux not computed (sensor dimensions not provided)")
 
