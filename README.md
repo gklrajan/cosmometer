@@ -43,21 +43,47 @@ Cosmo-Meter processes a sequence of dark frames (images taken in complete darkne
 ```bash
 python cosmometer.py --image_folder path/to/dark_frames --output cosmo-meter_events.csv
 ```
+![Screenshot 2025-03-01 at 07 43 42](https://github.com/user-attachments/assets/fdcc0b1a-17d7-4db5-9d60-0a23f788a94d)
 
 
 ### Interpretation of Results
-- The script outputs:
-  - **Total detected cosmic particle events**
-  - **Streaks (tracks across multiple pixels)**
-  - **Muon flux per pixel per second**
-  - **If sensor dimensions are provided, flux per mm² per second**
-  
-- A CSV file (`cosmo-meter_events.csv`) logs:
-  - **Frame Number, X Coordinate, Y Coordinate** of each detected cosmic event.
-  
-- Graphical outputs include:
-  - **Event heatmaps** (hot pixels, streaks, total cosmic events overlaid on sensor data)
-  - **Scatter plot of detected cosmic events across frames**
+The script outputs:  
+- Total detected cosmic particle events  
+- Streaks (tracks across multiple pixels)  
+- Cosmic event flux per pixel per second  
+- If sensor dimensions are provided, flux per mm² per second
+  ![Screenshot 2025-03-01 at 07 44 20](https://github.com/user-attachments/assets/9c9e3a25-bb6c-4b89-89d7-83ddd41cc45a)
+
+
+A **CSV file** (`cosmometer_events.csv`) logs:  
+- Frame Number  
+- X Coordinate  
+- Y Coordinate  
+For each detected cosmic event.
+![Screenshot 2025-03-01 at 07 48 06](https://github.com/user-attachments/assets/926e4b79-8fff-495e-98a3-4f54bebac4dc)
+
+
+Graphical outputs include:  
+
+1. **Event heatmaps**  
+   - Hot pixels (persistent bright pixels that could be artifacts)  
+   - Streaks (tracks from high-energy cosmic rays)  
+   - Total detected cosmic events overlaid on the sensor data
+     ![Screenshot 2025-03-01 at 07 44 02](https://github.com/user-attachments/assets/5a23bde7-52e8-481d-84b4-e5952b8de075)
+
+
+2. **Scatter plot of detected cosmic events over time**  
+   - X, Y position of events  
+   - Frame number as colorbar (shows when they occurred over time)
+     ![Screenshot 2025-03-01 at 07 47 45](https://github.com/user-attachments/assets/5dd270e6-785e-4abb-96b6-d500bd08b5ca)
+
+
+3. **Streak map visualization**  
+   - Time (frame number) on X-axis  
+   - Y-axis as streak coordinate (tracks cosmic rays over time)
+     ![Screenshot 2025-03-01 at 07 47 21](https://github.com/user-attachments/assets/52168d34-43b6-4496-a716-09e7fe488843)
+
+
 
 ## Example Output
 
