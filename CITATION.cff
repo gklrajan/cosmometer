@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "If you use Cosmometer, please cite it as below."
+title: "Cosmometer: a simple cosmic event detector"
+authors:
+  - name: Gokul Rajan
+version: "1.0.0"
+doi: 10.5281/zenodo.15104252
+date-released: 2025-03-29
+url: "https://github.com/gklrajan/cosmometer"
