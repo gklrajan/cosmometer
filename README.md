@@ -1,7 +1,7 @@
 # CosmoMeter: a simple cosmic event detector
 
 ## Overview
-**Cosmo-Meter** is an open-source cosmic event detection tool that uses digital camera sensors (CMOS or CCD) to detect muons, cosmic rays, and other high-energy particle interactions. By analyzing a time series of dark frames, it identifies transient bright pixel events that are _likely_ caused by charged particles passing through the sensor. Use at least a few thounsand dark images (images captured in absolute darkness with shutter closed) captured over a reasonably long time duration. More # of images and longer acquisitions in general will improve results. A sureshot way to increase confidence would be to have many independent measurements from different camera devices from the same geo location. Sounds like a great activity for an astrophysics club? ;)
+**CosmoMeter** is an open-source cosmic event detection tool that uses digital camera sensors (CMOS or CCD) to detect muons, cosmic rays, and other high-energy particle interactions. By analyzing a time series of dark frames, it identifies transient bright pixel events that are _likely_ caused by charged particles passing through the sensor. Use at least a few thounsand dark images (images captured in absolute darkness with shutter closed) captured over a reasonably long time duration. More # of images and longer acquisitions in general will improve results. A sureshot way to increase confidence would be to have many independent measurements from different camera devices from the same geo location. Sounds like a great activity for an astrophysics club? ;)
 
 ## What Can It Detect?
 - Most Likely Detections:
